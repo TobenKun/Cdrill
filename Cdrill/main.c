@@ -2,13 +2,21 @@
 #include <stdio.h>
 int copy_str(char *dest, char *src);
 int stradd(char *dest, char *src);
+int compare(char *str1, char *str2);
 int main(void) {
-	char str1[100] = "hello my name is ";
-	char str2[] = "youmi";
+	char str1[100] = "hello evryone";
+	char str2[] = "hello ";
 	
-	printf("합치기 이전 : %s \n", str1);
-	stradd(str1, str2);
-	printf("합친 이후 : %s \n", str1);
+	if (compare(str1, str2)) {
+		printf("str1 : %s \n", str1);
+		printf("str2 : %s \n", str2);
+		printf("우리는 같음 \n");
+	}
+	else {
+		printf("str1 : %s \n", str1);
+		printf("str2 : %s \n", str2);
+		printf("우리는 다름 \n");
+	}
 	
 	return 0;
 }
@@ -34,5 +42,15 @@ int stradd(char *dest, char *src) {
 	}
 	*dest = '\0';
 	
+	return 1;
+}
+int compare(char *str1, char *str2) {
+	while (!(*str1 == 0 && *str2 == 0)) {
+		if (*str1 == *str2) {
+			str1++;
+			str2++;
+		}
+		else return 0;
+	}
 	return 1;
 }
