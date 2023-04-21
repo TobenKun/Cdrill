@@ -1,15 +1,14 @@
-// copy_str 사용 예제
+// 문자열 씹뜯맛
 #include <stdio.h>
-int copy_str(char *src, char *dest);
-int main() {
-	char str1[] = "hello";
-	char str2[] = "hi";
+int copy_str(char *dest, char *src);
+int stradd(char *dest, char *src);
+int main(void) {
+	char str1[100] = "hello my name is ";
+	char str2[] = "youmi";
 	
-	printf("복사 이전 : %s \n", str1);
-	
-	copy_str(str1, str2);
-	
-	printf("복사 이후 : %s \n", str1);
+	printf("합치기 이전 : %s \n", str1);
+	stradd(str1, str2);
+	printf("합친 이후 : %s \n", str1);
 	
 	return 0;
 }
@@ -20,6 +19,19 @@ int copy_str(char *dest, char *src) {
 		dest++;
 	}
 	
+	*dest = '\0';
+	
+	return 1;
+}
+int stradd(char *dest, char *src) {
+	while (*dest) {
+		*dest++;
+	}
+	while (*src) {
+		*dest = *src;
+		dest++;
+		src++;
+	}
 	*dest = '\0';
 	
 	return 1;
