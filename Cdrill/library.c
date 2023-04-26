@@ -1,17 +1,17 @@
 // 도서 관리 프로그램
 #include <stdio.h>
 int addBook(char books[][3][30],int isHere[], int bookCount); //책 새로 추가 (제목, 저자, 출판사)
-int searchBook(char books[][3][30],int isHere[]); // 책 제목 검색하면 책 정보 나오게
-int borrowBook(char books[][3][30],int isHere[]);
-int returnBook(char books[][3][30],int isHere[]);
-int checkSame(char[], char[]);
-int bookSearchTool(char books[][3][30], int j, int isHere[]);
+int searchBook(char books[][3][30],int isHere[]); // 책 검색을 시작하는 함수 (검색자체는 bookSearchTool이 진행함)
+int borrowBook(char books[][3][30],int isHere[]); // 책 대출 함수
+int returnBook(char books[][3][30],int isHere[]); // 책 반납 함수
+int checkSame(char[], char[]); // 문자열이 같은지 체크하는 함수
+int bookSearchTool(char books[][3][30], int j, int isHere[]); // 실제로 검색을 하는 함수
 
 int main(void) {
 	char books[100][3][30]; // books[권수][제목, 저자, 출판사][해당 내용]
-	int isHere[100];
-	int bookCount = 0;
-	int userIndex;
+	int isHere[100]; // 100권의 대출 여부 배열
+	int bookCount = 0; // addbook함수에서 사용할 카운터, addBook 안에서 선언하면 초기화돼서 여기다 선언
+	int userIndex; // 메뉴 호출 인덱스
 	
 	while (1) {
 		printf("메뉴 번호를 입력하세요 \n");
@@ -26,7 +26,7 @@ int main(void) {
 		scanf("%d", &userIndex);
 		if (userIndex == 1) {
 			addBook(books,isHere, bookCount);
-			bookCount++;
+			bookCount++; // 책 넣고 카운트 늘리는 부분
 		}
 		else if (userIndex == 2) {
 			searchBook(books, isHere);
@@ -67,7 +67,7 @@ int searchBook(char books[][3][30],int isHere[]) {
 	printf("2. 저자 \n");
 	printf("3. 출판사 \n");
 	scanf("%d", &i);
-	j = i - 1;
+	j = i - 1; // book배열에 j를 바로 넣으려고 이렇게 1 빼줌
 	
 	bookSearchTool(books, j, isHere);
 
@@ -85,7 +85,7 @@ int checkSame(char src1[], char src2[]) {
 }
 int bookSearchTool(char books[][3][30], int j, int isHere[]) {
 	int i;
-	int bookIndex = -1;
+	int bookIndex = -1; // 몇번째 책인지 보관하는 변수, 0으로 선언하면 일치하는 책이 없는건지 확인이 안돼서 -1로 선언함
 	char input[30];
 	
 	if (j == 0) printf("책 제목을 입력해주세요 : ");
@@ -112,11 +112,11 @@ int bookSearchTool(char books[][3][30], int j, int isHere[]) {
 		}
 	}
 	
-	return bookIndex;
+	return bookIndex; // borrowBook, returnBook 함수에서 쓸 수 있게 책 번호 전달
 }
 int borrowBook(char books[][3][30],int isHere[]) {
-	int i;
-	char j[1];
+	int i; // 책 번호 전달받아서 저장
+	char j[1]; // y,n 저장하는 한글자 배열
 	
 	printf("대여하려는 ");
 	i = bookSearchTool(books, 0, isHere);
