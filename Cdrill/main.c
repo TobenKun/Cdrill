@@ -1,54 +1,66 @@
-// 문자열 씹뜯맛
+// 도서 관리 프로그램
 #include <stdio.h>
-int copy_str(char *dest, char *src);
-int stradd(char *dest, char *src);
-int compare(char *str1, char *str2);
+int addBook(char books[][3][30],int isHere[], int bookCount); //책 새로 추가 (제목, 저자, 출판사)
+int searchBookName(char books[][3][30],int isHere[]); // 책 제목 검색하면 책 정보 나오게
+//int searchBookAuthor();
+//int searchBookPublish();
+//int borrowBook();
+//int returnBook();
+int checkSame(char[], char[]);
+
 int main(void) {
-	char str1[100] = "hello evryone";
-	char str2[] = "hello ";
+	char books[100][3][30]; // books[권수][제목, 저자, 출판사][해당 내용]
+	int isHere[100];
+	int bookCount = 0;
+	int userIndex;
 	
-	if (compare(str1, str2)) {
-		printf("str1 : %s \n", str1);
-		printf("str2 : %s \n", str2);
-		printf("우리는 같음 \n");
+	
+	printf("메뉴 번호를 입력하세요 \n");
+	printf("1. 책 추가 \n");
+	
+	scanf("%d", &userIndex);
+	if (userIndex == 1) {
+		addBook(books,isHere, bookCount);
+		bookCount++;
 	}
-	else {
-		printf("str1 : %s \n", str1);
-		printf("str2 : %s \n", str2);
-		printf("우리는 다름 \n");
-	}
+	
+	
 	
 	return 0;
 }
-int copy_str(char *dest, char *src) {
-	while (*src) {
-		*dest = *src;
-		src++;
-		dest++;
-	}
+int addBook(char books[][3][30],int isHere[], int bookCount) {
 	
-	*dest = '\0';
+	printf("책 제목을 입력하세요 : ");
+	scanf("%s", books[bookCount][0]);
+	printf("책의 저자를 입력하세요 : ");
+	scanf("%s", books[bookCount][1]);
+	printf("출판사를 입력하세요 : ");
+	scanf("%s", books[bookCount][2]);
+	isHere[bookCount] = 1;
 	
-	return 1;
-}
-int stradd(char *dest, char *src) {
-	while (*dest) {
-		*dest++;
-	}
-	while (*src) {
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
 	
 	return 1;
 }
-int compare(char *str1, char *str2) {
-	while (!(*str1 == 0 && *str2 == 0)) {
-		if (*str1 == *str2) {
-			str1++;
-			str2++;
+int searchBookName(char books[][3][30],int isHere[]) {
+	int i;
+	int bookIndex;
+	char bookname[30];
+	
+	scanf("%s", bookname);
+	for (i = 0; i < 100; i++) {
+		if (checkSame(bookname, books[i][0]) == 1) {
+			bookIndex = i;
+			break;
+		}
+	}
+		
+	return 1;
+}
+int checkSame(char src1[], char src2[]) {
+	int i = 0;
+	while (!(src1[i] == 0 && src2[i] == 0)) {
+		if (src1[i] == src2[i]) {
+			i++;
 		}
 		else return 0;
 	}
