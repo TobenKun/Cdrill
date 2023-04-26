@@ -5,7 +5,7 @@ int searchBook(char books[][3][30],int isHere[]); // 책 제목 검색하면 책
 //int borrowBook();
 //int returnBook();
 int checkSame(char[], char[]);
-int bookSearchTool(char books[][3][30], char[], int j, int isHere[]);
+int bookSearchTool(char books[][3][30], int j, int isHere[]);
 
 int main(void) {
 	char books[100][3][30]; // books[권수][제목, 저자, 출판사][해당 내용]
@@ -16,7 +16,7 @@ int main(void) {
 	while (1) {
 		printf("메뉴 번호를 입력하세요 \n");
 		printf("1. 책 추가 \n");
-		printf("2. 책 제목으로 검색 \n");
+		printf("2. 책 검색 \n");
 		
 		printf("0. 프로그램 종료 \n");
 		printf("----------------------------- \n");
@@ -53,43 +53,17 @@ int addBook(char books[][3][30],int isHere[], int bookCount) {
 }
 int searchBook(char books[][3][30],int isHere[]) {
 	int i,j;
-	int bookIndex = -1;
 	char input[30];
 	
 	printf("무엇으로 검색하시겠습니까? \n");
-	printf("0. 책 제목 \n");
-	printf("1. 저자 \n");
-	printf("2. 출판사 \n");
-	scanf("%d", &j);
+	printf("1. 책 제목 \n");
+	printf("2. 저자 \n");
+	printf("3. 출판사 \n");
+	scanf("%d", &i);
+	j = i - 1;
 	
-	if (j == 0) {
-		printf("책 제목을 입력하세요 :");
-		scanf("%s", input);
-		bookSearchTool(books, input, j, isHere);
-	}
-	
-	
-//	for (i = 0; i < 100; i++) {
-//		if (checkSame(input, books[i][j]) == 1) {
-//			bookIndex = i;
-//			printf("해당 책의 정보는 다음과 같습니다. \n");
-//			printf("책 제목 : %s \n", books[bookIndex][0]);
-//			printf("저자 : %s \n", books[bookIndex][1]);
-//			printf("출판사 : %s \n", books[bookIndex][2]);
-//										if (isHere[i] == 0) {
-//										printf("이 책은 대출 중입니다. \n\n");
-//										}
-//										if (isHere[i] == 1) {
-//										printf("이 책은 대출 가능합니다. \n\n");
-//										}
-//		}
-//		else if (i == 99 && bookIndex == -1) {
-//			printf("일치하는 책이 존재하지 않습니다. \n");
-//			printf("초기 메뉴로 돌아갑니다. \n\n");
-//		}
-//	}
+	bookSearchTool(books, j, isHere);
 
-		
 	return 1;
 }
 int checkSame(char src1[], char src2[]) {
@@ -102,9 +76,16 @@ int checkSame(char src1[], char src2[]) {
 	}
 	return 1;
 }
-int bookSearchTool(char books[][3][30], char input[], int j, int isHere[]) {
+int bookSearchTool(char books[][3][30], int j, int isHere[]) {
 	int i;
 	int bookIndex = -1;
+	char input[30];
+	
+	if (j == 0) printf("책 제목을 입력해주세요 : ");
+	else if (j == 1) printf("저자를 입력해주세요 : ");
+	else if (j == 2) printf("출판사를 입력해주세요 :");
+	scanf("%s", input);
+	
 	for (i = 0; i < 100; i++) {
 		if (checkSame(input, books[i][j]) == 1) {
 			bookIndex = i;
