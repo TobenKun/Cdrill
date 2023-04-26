@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CA3D11129F9954700A58D78 /* library.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D11029F9954700A58D78 /* library.c */; };
 		5CB3987229D5E05F00B3358C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CB3987129D5E05F00B3358C /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5CA3D11029F9954700A58D78 /* library.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = library.c; sourceTree = "<group>"; };
 		5CB3986E29D5E05F00B3358C /* Cdrill */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Cdrill; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB3987129D5E05F00B3358C /* main.c */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 /* End PBXFileReference section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				5CB3987129D5E05F00B3358C /* main.c */,
+				5CA3D11029F9954700A58D78 /* library.c */,
 			);
 			path = Cdrill;
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CB3987229D5E05F00B3358C /* main.c in Sources */,
+				5CA3D11129F9954700A58D78 /* library.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
