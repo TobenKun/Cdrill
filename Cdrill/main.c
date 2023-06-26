@@ -1,4 +1,4 @@
-// 멤버 쉽게 초기화 하기
+// 멤버 쉽게 초기화 하기!
 #include <stdio.h>
 
 struct HUMAN {
@@ -36,3 +36,4 @@ int Print_Status(struct HUMAN human) {
 	
 	return 0;
 }
+
